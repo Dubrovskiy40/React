@@ -1,0 +1,11 @@
+.container {
+  background-color: #ccc;
+  height: auto;
+  width: 400px;
+  
+}.title {
+  text-align: center;
+  color: blueviolet;
+  margin:  20px 40px;
+  padding-top: 15px;
+}
