@@ -8,7 +8,7 @@ const defaultState = { chatsList: [
 const chatsReducer = (state = defaultState, action) => {
     switch (action.type) {
         case "ADD_CHAT_ITEM":
-            return { ...state, chatsList: [...state.chatsList, action.payload] };
+            return { ...state, chatsList: [...state.chatsList, {id: state.chatsList.length, name: action.payload}] };
         case "DELETE_CHAT_ITEM":
             return {...state, chatsList: state.chatsList.filter((el) => el.id !== action.payload), };   
         default:

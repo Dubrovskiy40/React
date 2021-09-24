@@ -12,10 +12,9 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 
 import { Link } from "react-router-dom";
 
-// import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
-// import { addChatItem } from "../../actions/chatsActions";
-// import { deleteChatItem } from "../../actions/chatsActions";
+import { useDispatch } from 'react-redux';
+import { addChat } from "../../actions/chatsActions";
+import { deleteChat } from "../../actions/chatsActions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Chats = ({ id, name, href }) => {
-
+const Chats = ({ chats }) => {
     const classes = useStyles();
     // const [listChats] = useState(
     //     [
@@ -43,16 +41,20 @@ const Chats = ({ id, name, href }) => {
     //     ]
     // );
 
-    // const dispatch = useDispatch();
-    const handlerAdd = () => {
-        console.log('addChat', id);
+    const dispatch = useDispatch();
+
+    const [text, setText] = useState();
+
+    const handlerAdd = (e) => {
+        console.log('addChat', chats.id);
         // dispatch({type: "ADD_CHAT_ITEM"});
-        // dispatch(addChatItem(id));
+        e.preventDefault();
+        dispatch(addChat(chats.name));
     };
     const handlerDelete = () => {
-        console.log('addChat', id);
+        console.log('deleteChat', chats.id);
         // dispatch({ type: "DELETE_CHAT_ITEM", payload: id });
-        // dispatch(deleteChatItem(id));
+        dispatch(deleteChat(chats.id));
     };
 
     return (
@@ -70,16 +72,19 @@ const Chats = ({ id, name, href }) => {
                             </ListItem>
                         ))} */}
                         <ListSubheader>{`Список чатов:`}</ListSubheader>
-                        <ListItem button key={id}>
+                        <ListItem button key={chats.id}>
                             <ListItemIcon>
                                 <AccessibilityNew />
                             </ListItemIcon>
-                            <ListItemText primary={<Link to={href}>{name}</Link>} />
+                            <ListItemText primary={<Link to={chats.href}>{chats.name}</Link>} />
                         </ListItem>
                     </ul>
                 </List>
                 <div className={classes.chatsBtn}>
-                    <Button color='inherit' variant='outlined' onClick={handlerAdd}>add</Button>
+                    <form onSubmit={handlerAdd}>
+                        <input value={text} onChange={(e) => setText(e.target.value)} type="text" />
+                        <Button color='inherit' variant='outlined' type="submit">add</Button>
+                    </form>
                     <Button color='secondary' variant='contained' onClick={handlerDelete}>delete</Button>
                 </div>
             </div>
