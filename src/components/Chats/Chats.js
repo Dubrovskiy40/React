@@ -13,7 +13,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import { Link } from "react-router-dom";
 
 // import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import { addChatItem } from "../../actions/chatsActions";
 // import { deleteChatItem } from "../../actions/chatsActions";
 
@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-const Chats = ({ id, name }) => {
+const Chats = ({ id, name, href }) => {
+
     const classes = useStyles();
     // const [listChats] = useState(
     //     [
@@ -42,18 +43,16 @@ const Chats = ({ id, name }) => {
     //     ]
     // );
 
-    const dispatch = useDispatch();
-    // const changeChats = useSelector((state) => state.chatsList);
-    // console.log('1111', changeChats);
+    // const dispatch = useDispatch();
     const handlerAdd = () => {
-        console.log('addChat');
+        console.log('addChat', id);
         // dispatch({type: "ADD_CHAT_ITEM"});
         // dispatch(addChatItem(id));
     };
     const handlerDelete = () => {
-        dispatch({ type: "DELETE_CHAT_ITEM", payload: id });
+        console.log('addChat', id);
+        // dispatch({ type: "DELETE_CHAT_ITEM", payload: id });
         // dispatch(deleteChatItem(id));
-
     };
 
     return (
@@ -70,7 +69,13 @@ const Chats = ({ id, name }) => {
                             <ListItemText primary={<Link to={chat.href}>{chat.name}</Link>} />
                             </ListItem>
                         ))} */}
-                        <li>{name}</li>
+                        <ListSubheader>{`Список чатов:`}</ListSubheader>
+                        <ListItem button key={id}>
+                            <ListItemIcon>
+                                <AccessibilityNew />
+                            </ListItemIcon>
+                            <ListItemText primary={<Link to={href}>{name}</Link>} />
+                        </ListItem>
                     </ul>
                 </List>
                 <div className={classes.chatsBtn}>

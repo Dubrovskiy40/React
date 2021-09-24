@@ -30,7 +30,10 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const Form = ({messageList, messageText, fooText, messageAuthor, fooAuthor, setML, answer}) => {
+const Form = ({messageList, setML, answer}) => {
+    const [messageText, setMessageText] = useState('');
+    const [messageAuthor, setMessageAuthor] = useState('');
+
     const [checked, setChecked] = useState(false);
     const [hidden, setHidden] = useState(true);
     const ref = useRef(null);
@@ -42,6 +45,8 @@ const Form = ({messageList, messageText, fooText, messageAuthor, fooAuthor, setM
             author: hidden ? '-' : messageAuthor
         };
         setML(prev => [...prev, message]);
+        setMessageText('');
+        setMessageAuthor('');
         console.log('Список сообщений', messageList);
     };
     useEffect(() => {
@@ -53,7 +58,8 @@ const Form = ({messageList, messageText, fooText, messageAuthor, fooAuthor, setM
         setHidden(!hidden);
     };
 
-    const chats = useSelector((state) => state.chatsReducer);
+    const chats = useSelector((state) => state.chatsList);
+    console.log('1111', chats);
     
     return (
         <FormControl>
@@ -61,10 +67,9 @@ const Form = ({messageList, messageText, fooText, messageAuthor, fooAuthor, setM
                 <Grid container spacing={10}>
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
-                            {chats.map((chat) => (
-                                <Chats key={chat.id} id={chat.id} name={chat.name} />
+                            {chats.map((chat) =>(
+                                <Chats key={chat.id} id={chat.id} name={chat.name} href={chat.href}/>
                             ))}
-                            
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
@@ -75,7 +80,7 @@ const Form = ({messageList, messageText, fooText, messageAuthor, fooAuthor, setM
                                     type="text"
                                     placeholder="На верном пути ты"
                                     value={messageText}
-                                    onChange={event => fooText(event.target.value)}
+                                    onChange={event => setMessageText(event.target.value)}
                                     ref={ref}
                                 />
                                 <FormControlLabel
@@ -95,7 +100,7 @@ const Form = ({messageList, messageText, fooText, messageAuthor, fooAuthor, setM
                                     type="text" 
                                     placeholder="Войти в историю"
                                     value={messageAuthor}
-                                    onChange={event => fooAuthor(event.target.value)}
+                                    onChange={event => setMessageAuthor(event.target.value)}
                                 />
                                 <Button variant="contained" 
                                     color="primary" 

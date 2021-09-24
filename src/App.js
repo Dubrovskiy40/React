@@ -19,8 +19,6 @@ let answerBot = '';
 
 function App() {
   const [messageList, setMessageList] = useState([]);
-  const [messageText, setMessageText] = useState('');
-  const [messageAuthor, setMessageAuthor] = useState('');
 
   useEffect(() => {
     const last = messageList.slice(-1);
@@ -32,8 +30,6 @@ function App() {
         console.log('Ответ робота:', answerBot);
       }
     }, 1500);
-    setMessageText('');
-    setMessageAuthor('');
   }, [messageList]);
 
   return (
@@ -48,10 +44,6 @@ function App() {
             <Route exact path="/"><Link to="/profile">Мой Профиль</Link></Route>
             <Route exact path="/chats/*" component={Form}>
               <Form messageList={messageList}
-                messageText={messageText}
-                fooText={setMessageText} 
-                messageAuthor={messageAuthor} 
-                fooAuthor={setMessageAuthor}
                 setML={setMessageList}
                 answer={answerBot}
               />
