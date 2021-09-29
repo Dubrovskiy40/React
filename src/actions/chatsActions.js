@@ -1,10 +1,14 @@
+import { 
+    OPEN_CHAT, 
+    DELETE_CHAT 
+} from "../store/types/chatsTypes";
 
 export const deleteChat = (id) => ({
-    type: "DELETE_CHAT_ITEM",
+    type: DELETE_CHAT,
     payload: id,
 });
 
 export const addChat = (id) => ({
-    type: "ADD_CHAT_ITEM",
+    type: OPEN_CHAT,
     payload: id,
 });

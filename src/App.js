@@ -1,58 +1,27 @@
-import { useState, useEffect } from 'react';
 import './App.css'
-import Form from './components/Form/Form';
 import Footer from './components/Footer/Footer';
-import HeaderNav from './components/HeaderNav/HeaderNav';
-import MainContent from './components/MainContent/MainContent';
-import { withTheme } from '@material-ui/core/styles';
-
-import Chats from './components/Chats/Chats';
+import Header from './components/Header/Header';
 import Profile from './components/Profile/Profile';
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navbar from './components/Navbar/Navbar';
+import Dialogs from './components/Dialogs/Dialogs';
+import Main from "./components/Main/Main";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from "react-router-dom";
-
-let answerBot = '';
-
-function App() {
-  const [messageList, setMessageList] = useState([]);
-
-  useEffect(() => {
-    const last = messageList.slice(-1);
-    setTimeout(() => {
-      if (last.length) {
-        let answerAuthor = last[0].author;
-        let answerText = last[0].text;
-        answerBot = `Принял сообщение от ${answerAuthor} с текстом: ${answerText}`;
-        console.log('Ответ робота:', answerBot);
-      }
-    }, 1500);
-  }, [messageList]);
-
+function App(props) {
   return (
-    <>
       <Router>
-        <HeaderNav />
-        <MainContent />
-        <div className='wrap'>
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/chats" component={Chats} />
-            <Route exact path="/"><Link to="/chats">Список чатов</Link></Route>
-            <Route exact path="/"><Link to="/profile">Мой Профиль</Link></Route>
-            <Route exact path="/chats/*" component={Form}>
-              <Form messageList={messageList}
-                setML={setMessageList}
-                answer={answerBot}
-              />
-            </Route>
+        <div className="app__wrap">
+          <Header />
+          <Navbar />
+          <div className='app__content'>
+            <Route exact path='/' render={ () => <Main />} />
+            <Route path='/profile' render={ () => <Profile />} />
+            <Route path='/dialogs' render={ () => <Dialogs />} />
           </div>
+        </div>
         <Footer />
       </Router>
-    </>
   );
 };
 
-export default withTheme(App);
+export default (App);

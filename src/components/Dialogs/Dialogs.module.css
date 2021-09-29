@@ -1,0 +1,13 @@
+.content {
+    padding: 20px;
+}
+.dialogs {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+}
+.dialogs__list {
+    padding: 20px;
+}
+.messages__list {
+    padding: 20px;
+}

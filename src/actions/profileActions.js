@@ -1,8 +1,11 @@
-import { ADD_PROFILE, DELETE_PROFILE } from '../store/profileList';
+import { 
+    ADD_PROFILE, 
+    DELETE_PROFILE 
+} from '../store/types/profileTypes';
 
-export const addProfile = (id) => ({
+export const addProfile = (profile) => ({
     type: ADD_PROFILE,
-    payload: id
+    payload: profile
 });
 
 export const deleteProfile = () => ({

@@ -1,16 +1,21 @@
-/* .container {
-  background-color: #ccc;
-  height: auto;
-  width: 400px;
+.app__wrap {
+  margin: 0 auto;
+  display: grid;
+  width: auto;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 3fr 9fr;
+  grid-template-areas:
+      "h h"
+      "n m"
+      "f f";
+}
+.app__content {
+  grid-area: m;
+    background-color: rgb(161, 156, 156);
+    min-height: calc(100vh - 60px - 60px);
+}
+
+.btn {
+  margin: 10px 20px;
   
-}.title {
-  text-align: center;
-  color: blueviolet;
-  margin:  20px 40px;
-  padding-top: 15px;
-} */
-.wrap {
-  display: flex;
-  justify-content: space-around;
-  align-items: center; 
 }
