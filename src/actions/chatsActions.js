@@ -8,7 +8,13 @@ export const deleteChat = (id) => ({
     payload: id,
 });
 
+<<<<<<< HEAD
 export const addChat = (id) => ({
     type: OPEN_CHAT,
     payload: id,
+=======
+export const addChat = (name) => ({
+    type: "ADD_CHAT_ITEM",
+    payload: name,
+>>>>>>> lesson_05
 });

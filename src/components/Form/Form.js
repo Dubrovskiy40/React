@@ -30,10 +30,10 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const Form = ({messageList, setML, answer}) => {
+const Form = (props) => {
     const [messageText, setMessageText] = useState('');
     const [messageAuthor, setMessageAuthor] = useState('');
-
+    const [messageList, setMessageList] = useState([]);
     const [checked, setChecked] = useState(false);
     const [hidden, setHidden] = useState(true);
     const ref = useRef(null);
@@ -44,7 +44,7 @@ const Form = ({messageList, setML, answer}) => {
             text: messageText || '-',
             author: hidden ? '-' : messageAuthor
         };
-        setML(prev => [...prev, message]);
+        setMessageList(prev => [...prev, message]);
         setMessageText('');
         setMessageAuthor('');
         console.log('Список сообщений', messageList);
@@ -58,6 +58,20 @@ const Form = ({messageList, setML, answer}) => {
         setHidden(!hidden);
     };
 
+    let answer = '';
+
+  useEffect(() => {
+    const last = messageList.slice(-1);
+    setTimeout(() => {
+      if (last.length) {
+        let answerAuthor = last[0].author;
+        let answerText = last[0].text;
+        answer = `Принял сообщение от ${answerAuthor} с текстом: ${answerText}`;
+        console.log('Ответ робота:', answer);
+      }
+    }, 1500);
+  }, [messageList]);
+
     const chats = useSelector((state) => state.chatsList);
     console.log('1111', chats);
     
@@ -67,9 +81,7 @@ const Form = ({messageList, setML, answer}) => {
                 <Grid container spacing={10}>
                     <Grid item xs={6}>
                         <Paper className={classes.paper}>
-                            {chats.map((chat) =>(
-                                <Chats key={chat.id} id={chat.id} name={chat.name} href={chat.href}/>
-                            ))}
+                            <Chats chats={chats}/>
                         </Paper>
                     </Grid>
                     <Grid item xs={6}>
