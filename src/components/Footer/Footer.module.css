@@ -1,0 +1,14 @@
+.footer {
+   grid-area: f;
+   background-color: rgb(111, 111, 111);
+   
+   -ms-grid-column: line2 / line3;
+   grid-column: line2 / line3;
+   -ms-grid-row: row3 / row4;
+   grid-row: row3 / row4;
+   height: 60px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 10px;
+}
