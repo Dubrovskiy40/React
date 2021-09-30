@@ -8,7 +8,7 @@ const AddForm = () => {
    const [text, setText] = useState('');
    const [author, setAuthor] = useState('');
    const chatId = useSelector((state) => state.chats.activeId);
-   const dispatch = useDispatch()
+   const dispatch = useDispatch();
 
    const addMes = () => {
       const creatMessage = {

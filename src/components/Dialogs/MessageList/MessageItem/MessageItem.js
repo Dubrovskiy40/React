@@ -10,9 +10,9 @@ const MessageItem = ({ messageList }) => {
     dispatch(deleteMessage(chatId, id));
     dispatch(showModalMessage(`"${author}" - твой текст расщеплен на молекулы`));
   };
-
+  
   return (
-    <div className={style.wrap}>
+    <div className={style.messageItem__wrap}>
       {messageList.map((item) => (
         <div key={item.id} className={style.border__btn}>
             <button onClick={() => deleteItem(item.id, item.author)} className={style.btn}>x</button>
