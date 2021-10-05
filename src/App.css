@@ -1,0 +1,21 @@
+.app__wrap {
+  margin: 0 auto;
+  display: grid;
+  width: auto;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 3fr 9fr;
+  grid-template-areas:
+      "h h"
+      "n m"
+      "f f";
+}
+.app__content {
+  grid-area: m;
+    background-color: rgb(161, 156, 156);
+    min-height: calc(100vh - 60px - 60px);
+}
+
+.btn {
+  margin: 10px 20px;
+  
+}
