@@ -13,7 +13,7 @@ const apiPeopleReducer = (state = initialState, { type, payload }) => {
       return [...payload];
 
     case DELETE_HEROES:
-      return state.filter((el) => el.id !== payload);
+      return state.filter((hero, index) => index !== payload);
 
     case ADD_HEROES:
       return [payload, ...state];

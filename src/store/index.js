@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import apiPeopleReducer from './apiPeopleReducer';
+import { loaderReducer } from './loaderReducer';
 
 const persistConfig = {
     key: 'socialNetwork',
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     chats,
     modalMessage,
     messages,
-    apiPeopleReducer,
+    people: apiPeopleReducer,
+    loaderReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

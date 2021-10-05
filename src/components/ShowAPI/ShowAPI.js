@@ -4,22 +4,31 @@ import { getHeroes } from '../../actions/apiPeopleActions';
 import PeopleItem from './PeopleItem/PeopleItem';
 import style from './ShowAPI.module.css';
 
-const ShowAPI = (props) => {
-  const heroes = useSelector(state => state.heroes);
-  const dispatch = useDispatch();
+import Spin from './../Spin/Spin';
 
-  const [loadFlg, setLoadFlg] = useState(false);
+const ShowAPI = (props) => {
+  const heroes = useSelector(state => state.people);
+  const error = useSelector(state => state.loaderReducer.error);
+  const dispatch = useDispatch();
+  console.log('heroes -->', heroes)
   const [newArr, setNewArr] = useState([]);
+  const [loadFlg, setLoadFlg] = useState(false);
 
   useEffect(() => {
     if (!newArr.length && !loadFlg) {
-      dispatch(getHeroes());
+      dispatch(getHeroes())
     }
   }, [newArr]);
 
   return (
     <ul className={style.wrap}>
-      {heroes?.length ? heroes.map((hero) => <PeopleItem key={hero.id} hero={hero}/>) : null}
+      <Spin />
+      {error && (
+            <div className={style.error__message}>
+              {error}
+            </div>
+      )}
+      {heroes?.length ? heroes.map((hero, index) => <PeopleItem key={index} index={index} hero={hero}/>) : null}
     </ul>
   );
 };

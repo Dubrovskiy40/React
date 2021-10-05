@@ -1,0 +1,39 @@
+.border__btn {
+    border: 2px solid #000;
+    border-radius: 15px;
+    text-align: left;
+    font-size: 18px;
+    position: relative;
+    padding: 5px 10px;
+    margin-top: 15px;
+    max-width: 300px;
+    margin-left: 20px;
+}
+.border__btn:hover {
+    color: #fff;
+    cursor: pointer;
+}
+.item {
+    list-style-type: none;
+}
+.btn {
+    position: absolute;
+    margin-top: 10px;
+    background-color: #000;
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    border-radius: 10px;
+    right: auto;
+    top: -8px;
+    right: 3px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
