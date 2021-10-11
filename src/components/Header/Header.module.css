@@ -1,0 +1,23 @@
+.header {
+   grid-area: h;
+   background-color: rgb(111, 111, 111);
+
+   position: fixed;
+   left: 0;
+   top: 0;
+   height: 60px;
+   width: 100%;
+   -ms-grid-column: line1 / line3;
+   grid-column: line1 / line3;
+   -ms-grid-row: row1 / row2;
+   grid-row: row1 / row2;
+   display: flex;
+   justify-content: space-between;
+   padding: 10px;
+   align-items: center;
+   
+}
+.header__img {
+   width: 45px;
+   margin-left: 2%;
+}
