@@ -33,7 +33,7 @@ const AuthPage = () => {
     dispatch(fetchUser({ email, password }));
   };
   return (
-    <>
+    <div>
       <form onSubmit={handlerSubmit} className={style.wrap}>
         <input
           className={style.inp}
@@ -54,7 +54,7 @@ const AuthPage = () => {
       {errorFlg && (
         <div>ERROR : THE EMAIL OR PASSWORD IS INCORRECT</div>
       )}
-    </>
+    </div>
   );
 };
 

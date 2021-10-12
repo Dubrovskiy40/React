@@ -4,9 +4,23 @@ import { deleteMessageList } from '../../../actions/messageActions';
 import { showModalMessage } from '../../../actions/modalMessageActions';
 import style from './DialogList.module.css';
 import CreateDialog from './CreateDialog/CreateDialog';
+import { useEffect, useState } from 'react';
+
+
 
 const DialogList = () => {
-   const chats = useSelector(state => state.chats.chats);
+
+const [data, setData] = useState(null);
+
+useEffect(() => {
+   fetch('http://localhost:3001/ dialogs')
+      .then((response) => response.json())
+      .then((data) => setData(data));
+}, []);
+console.log('data', data);
+const chats = useSelector(state => state.chats?.activeId);
+
+   // const chats = useSelector(state => state.chats.chats);
    const dispatch = useDispatch();
    const handlerChat = (id) => dispatch(addChat(id));
    const delChat = (id, name) => {

@@ -10,6 +10,16 @@ const users = [
 
 const strings = ["test1", "test2", "test3", "test4", "test5", "test6"];
 
+const chats = [
+  {id: 0, name: 'Штурмовики'},
+  {id: 1, name: 'Джедаи'},
+  {id: 2, name: 'Принцесса Лея 18+'},
+  {id: 3, name: 'Дроны'},
+  {id: 4, name: 'Ситхи'}
+];
+
+
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
@@ -26,6 +36,20 @@ app.post("/auth", (req, res) => {
   }
   res.sendStatus(400);
 });
+
+app.get("/dialogs", (req, res) => {
+  console.log('chats--->', chats)
+  res.json(chats);
+});
+// app.post("/dialogs", (req, res) => {
+//   console.log(req.body, "body");
+//   const { value } = req.body;
+//   console.log(value);
+//   chats.push(value);
+//   res.json(chats);
+// });
+
+
 
 app.get("/test", (req, res) => {
   res.json(strings);
