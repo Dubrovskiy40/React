@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after,
+:root {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+@import 'https://fonts.googleapis.com/css?family=Overlock:400,400i,700|Oleo+Script'; */
+
+body {
+    height: 100vh;
+}
+
+
